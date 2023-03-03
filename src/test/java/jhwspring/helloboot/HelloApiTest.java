@@ -22,14 +22,14 @@ public class HelloApiTest {
         // header
         assertThat(res.getHeaders().getFirst(HttpHeaders.CONTENT_TYPE)).startsWith(MediaType.TEXT_PLAIN_VALUE);
         // body
-        assertThat(res.getBody()).isEqualTo("HelloSpring");
+        assertThat(res.getBody()).isEqualTo("*HelloSpring*");
     }
 
     @Test
     void failsHelloAPi() {
         TestRestTemplate rest = new TestRestTemplate();
 
-        ResponseEntity<String> res = rest.getForEntity("http://localhost:8080/hello?name={name}", String.class);
+        ResponseEntity<String> res = rest.getForEntity("http://localhost:8080/hello?name={name}", String.class, ' ');
 
         assertThat(res.getStatusCode()).isEqualTo(HttpStatus.INTERNAL_SERVER_ERROR);
     }
